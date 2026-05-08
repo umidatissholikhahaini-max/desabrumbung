@@ -1,0 +1,93 @@
+'use client'
+
+import { Leaf, Utensils } from "lucide-react"
+import Image from "next/image"
+
+const umkmProducts = [
+  {
+    icon: Leaf,
+    title: "Tas Anyam Ramah Lingkungan",
+    description: "Tas anyam tradisional yang dibuat dengan keahlian tangan oleh masyarakat Desa Brumbung menggunakan bahan-bahan ramah lingkungan. Tersedia dalam berbagai warna, pola, dan ukuran yang elegan dan fungsional.",
+    features: [
+      "Bahan ramah lingkungan",
+      "Desain tradisional Jawa",
+      "Berbagai ukuran tersedia",
+      "Tahan lama dan berkualitas"
+    ],
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_4135.JPG-tT7TKqll9mSufxtBlgsx6UpCQ1iNPL.jpeg"
+  },
+  {
+    icon: Utensils,
+    title: "Krupuk Eiva",
+    description: "Produk krupuk berkualitas premium yang diproduksi dengan resep tradisional dan bahan-bahan pilihan. Krupuk Eiva memiliki rasa yang lezat dan tekstur yang renyah, cocok untuk menemani hidangan keluarga.",
+    features: [
+      "Bahan pilihan terbaik",
+      "Resep tradisional",
+      "Kemasan higienis",
+      "Tersedia dalam berbagai rasa"
+    ],
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20260506-WA0000.jpg-3L7o4BHfB7bMD5QeUqWZdMHxMHWk33.jpeg"
+  }
+]
+
+export function UMKM() {
+  return (
+    <section id="umkm" className="py-20 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="mb-16">
+          <p className="text-sm uppercase tracking-widest text-primary font-medium mb-4">Produk Lokal</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
+            UMKM Desa Brumbung
+          </h2>
+          <p className="text-muted-foreground max-w-2xl leading-relaxed">
+            Usaha Mikro, Kecil, dan Menengah (UMKM) Desa Brumbung menghasilkan produk-produk berkualitas yang mencerminkan 
+            keahlian dan dedikasi masyarakat lokal. Produk kami ramah lingkungan, autentik, dan siap membanggakan.
+          </p>
+        </div>
+
+        <div className="space-y-12">
+          {umkmProducts.map((product, index) => (
+            <div key={index} className={`grid md:grid-cols-2 gap-8 items-center ${index === 1 ? 'md:grid-flow-dense' : ''}`}>
+              {/* Image */}
+              <div className={`relative ${index === 1 ? 'md:col-start-2' : ''}`}>
+                <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-muted border border-border">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className={index === 1 ? 'md:col-start-1' : ''}>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <product.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-serif text-3xl font-bold text-foreground mb-3">{product.title}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">{product.description}</p>
+
+                {/* Features */}
+                <div className="grid sm:grid-cols-2 gap-3 mb-8">
+                  {product.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                      </div>
+                      <span className="text-sm text-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-sm text-muted-foreground italic">
+                  Hubungi BUMDES Sri Rejeki untuk pemesanan dan informasi harga: 085649095806
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
